@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import withThemeContext from '../hoc/providerInjector';;
+import providerHoc from '../hoc/providerHoc';;
 
 
 class Child extends Component {
@@ -18,6 +18,6 @@ class Child extends Component {
   
   }
 
-  export default withThemeContext(({context}) => (
+  export default providerHoc(({context}) => (
     <Child context={context} />
   ));
