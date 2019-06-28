@@ -4,6 +4,10 @@ import AppContext from '../providers/AppContext';
 
 class Child extends Component {
 
+    accessItHere(){
+      // how can I access properties of <AppContext.Consumer> here??
+    }
+
     render(){
       return <div className="person">
         <AppContext.Consumer>
