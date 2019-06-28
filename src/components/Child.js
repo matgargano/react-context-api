@@ -1,27 +1,23 @@
 import React, {Component} from 'react';
-import AppContext from '../providers/AppContext';
+import withThemeContext from '../hoc/providerInjector';;
 
 
 class Child extends Component {
 
-    accessItHere(){
-      // how can I access properties of <AppContext.Consumer> here??
+    onTextChange = (e) => {
+      this.props.context.setName(e.target.value)
     }
 
     render(){
       return <div className="person">
-        <AppContext.Consumer>
-          {(context) => 
-            (
-              <React.Fragment>
-                <p>I am {context.state.name}</p>
-                <input type="text" value={context.state.name} onChange={e => context.setName(e.target.value)}></input>
-              </React.Fragment>
-            )}
-        </AppContext.Consumer>
+        {JSON.stringify(this.props)}
+        <p>I am {this.props.context.state.name}</p>
+                <input type="text" value={this.props.context.state.name} onChange={this.onTextChange}></input>
       </div>
     }
   
   }
 
-  export default Child;
+  export default withThemeContext(({context}) => (
+    <Child context={context} />
+  ));
