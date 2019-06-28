@@ -1,26 +1,28 @@
-import React, {Component} from 'react';
+/* eslint-disable react/no-unused-state */
+import React, { Component } from 'react';
 import AppContext from './AppContext';
 
 class AppProvider extends Component {
-
     state = {
-      name: 'Mat'
-      
+      name: 'Mat',
+
     }
-  
-    render(){
+
+    render() {
+      const { children } = this.props;
       return (
         <AppContext.Provider value={
           {
-            state : this.state,
-            setName: name => this.setState({name})
+            state: this.state,
+            setName: name => this.setState({ name }),
           }
-        }>
-          {this.props.children}
+        }
+        >
+          {children}
         </AppContext.Provider>
-      )
+      );
     }
-  }
-  
+}
 
-  export default AppProvider;
+
+export default AppProvider;

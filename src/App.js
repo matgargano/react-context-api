@@ -3,7 +3,7 @@ import AppProvider from './providers/AppProvider';
 import AppContainer from './components/AppContainer';
 
 
-function App(){
+function App() {
   return (
     <AppProvider>
       <AppContainer />
@@ -11,6 +11,5 @@ function App(){
   );
 }
 
- 
 
 export default App;

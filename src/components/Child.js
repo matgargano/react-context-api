@@ -1,23 +1,32 @@
-import React, {Component} from 'react';
-import providerHoc from '../hoc/providerHoc';;
+import React, { Component } from 'react';
+import providerHoc from '../hoc/providerHoc';
 
 
 class Child extends Component {
-
     onTextChange = (e) => {
-      this.props.context.setName(e.target.value)
+      const { context } = this.props;
+      const { setName } = context;
+      setName(e.target.value);
     }
 
-    render(){
-      return <div className="person">
-        {JSON.stringify(this.props)}
-        <p>I am {this.props.context.state.name}</p>
-                <input type="text" value={this.props.context.state.name} onChange={this.onTextChange}></input>
-      </div>
-    }
-  
-  }
+    render() {
+      const { context } = this.props;
+      const { name } = context.state;
 
-  export default providerHoc(({context}) => (
-    <Child context={context} />
-  ));
+      return (
+        <div className="person">
+          {JSON.stringify(this.props)}
+          <p>
+            I am
+            {' '}
+            {name}
+          </p>
+          <input type="text" value={name} onChange={this.onTextChange} />
+        </div>
+      );
+    }
+}
+
+export default providerHoc(({ context }) => (
+  <Child context={context} />
+));
