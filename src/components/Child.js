@@ -5,13 +5,24 @@ import providerHoc from '../hoc/providerHoc';
 class Child extends Component {
     onTextChange = (e) => {
       const { context } = this.props;
-      const { setName } = context;
-      setName(e.target.value);
+      const { setName, setAge } = context;
+
+      switch (e.target.dataset.type) {
+        case 'age':
+          setAge(e.target.value);
+          break;
+        case 'name':
+          setName(e.target.value);
+          break;
+        default:
+          break;
+      }
     }
 
     render() {
       const { context } = this.props;
       const { name } = context.state;
+      const { age } = context.state;
 
       return (
         <div className="person">
@@ -21,7 +32,8 @@ class Child extends Component {
             {' '}
             {name}
           </p>
-          <input type="text" value={name} onChange={this.onTextChange} />
+          <input type="text" data-type="name" value={name} onChange={this.onTextChange} />
+          <input type="age" data-type="age" value={age} onChange={this.onTextChange} />
         </div>
       );
     }

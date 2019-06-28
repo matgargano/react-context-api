@@ -5,6 +5,7 @@ import AppContext from './AppContext';
 class AppProvider extends Component {
     state = {
       name: 'Mat',
+      age: 10,
 
     }
 
@@ -15,6 +16,7 @@ class AppProvider extends Component {
           {
             state: this.state,
             setName: name => this.setState({ name }),
+            setAge: age => this.setState({ age }),
           }
         }
         >
